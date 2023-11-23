@@ -1,4 +1,33 @@
 basePath: /
+definitions:
+  github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto:
+    properties:
+      color:
+        type: string
+      description:
+        type: string
+      imageURL:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
+  github_com_DaniaLD_upera-go-test_pkg_model.Product:
+    properties:
+      color:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      imageURL:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
 info:
   contact:
     email: danial.6274@gmail.com
@@ -6,5 +35,25 @@ info:
   description: This is an assessment for Upera company
   title: Upera - Product Versioning
   version: "1.0"
-paths: {}
+paths:
+  /api/v1/product:
+    post:
+      description: CreateProduct
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+      summary: CreateProduct
+      tags:
+      - Product
 swagger: "2.0"
