@@ -1,0 +1,10 @@
+basePath: /
+info:
+  contact:
+    email: danial.6274@gmail.com
+    name: API Support
+  description: This is an assessment for Upera company
+  title: Upera - Product Versioning
+  version: "1.0"
+paths: {}
+swagger: "2.0"

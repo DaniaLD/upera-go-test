@@ -25,4 +25,6 @@ func (r *Router) InitRouter() {
 	r.api = r.fiberApp.Group("/api")
 
 	r.v1 = r.api.Group("/v1")
+
+	r.swaggerRouter()
 }

@@ -1,0 +1,14 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is an assessment for Upera company",
+        "title": "Upera - Product Versioning",
+        "contact": {
+            "name": "API Support",
+            "email": "danial.6274@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {}
+}
