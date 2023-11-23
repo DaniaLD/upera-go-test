@@ -48,6 +48,45 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/api/v1/product/{id}": {
+            "put": {
+                "description": "UpdateProduct",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "UpdateProduct",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "format": "string",
+                        "description": "Product Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -77,6 +116,9 @@ const docTemplate = `{
                 "color": {
                     "type": "string"
                 },
+                "createdAt": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -91,6 +133,9 @@ const docTemplate = `{
                 },
                 "price": {
                     "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
                 }
             }
         }

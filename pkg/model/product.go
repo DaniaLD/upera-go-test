@@ -7,4 +7,6 @@ type Product struct {
 	Color       string `json:"color"`
 	Price       int64  `json:"price"`
 	ImageURL    string `json:"imageURL"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
 }
