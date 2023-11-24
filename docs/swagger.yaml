@@ -22,6 +22,15 @@ definitions:
       price:
         type: integer
     type: object
+  github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto:
+    properties:
+      message:
+        type: string
+      payload:
+        $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+      status:
+        type: integer
+    type: object
   github_com_DaniaLD_upera-go-test_pkg_model.Product:
     properties:
       color:
@@ -84,7 +93,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto'
       summary: CreateProduct
       tags:
       - Product
@@ -134,7 +143,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto'
       summary: GetProduct
       tags:
       - Product
@@ -159,7 +168,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto'
       summary: UpdateProduct
       tags:
       - Product
@@ -185,7 +194,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto'
       summary: GetProductByRevisionId
       tags:
       - Product

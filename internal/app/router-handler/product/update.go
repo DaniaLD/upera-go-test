@@ -13,7 +13,7 @@ import (
 // @Produce json
 // @Param body body productDto.CreateProductRequestDto true "body"
 // @Param id path string true "Product Id" format(string)
-// @Success 200 {object} globalModel.Product
+// @Success 200 {object} productDto.ProductCommonResponseDto
 // @Router /api/v1/product/{id} [put]
 func (h *ProductRouterHandler) UpdateProduct(c *fiber.Ctx) error {
 	var body productDto.CreateProductRequestDto

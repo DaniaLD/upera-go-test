@@ -43,7 +43,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto"
                         }
                     }
                 }
@@ -117,7 +117,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto"
                         }
                     }
                 }
@@ -154,7 +154,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto"
                         }
                     }
                 }
@@ -192,7 +192,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto"
                         }
                     }
                 }
@@ -230,6 +230,20 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.ProductCommonResponseDto": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "payload": {
+                    "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                },
+                "status": {
                     "type": "integer"
                 }
             }

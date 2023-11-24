@@ -3,6 +3,7 @@ package router
 import (
 	productAppService "github.com/DaniaLD/upera-go-test/internal/app/service/product"
 	productRevisionAppService "github.com/DaniaLD/upera-go-test/internal/app/service/product-revision"
+	"github.com/DaniaLD/upera-go-test/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -31,7 +32,9 @@ func (r *Router) InitRouter() {
 	r.fiberRouter = r.fiberApp.Group("/")
 
 	r.api = r.fiberApp.Group("/api")
-
+	r.api.Use(
+		utils.ResponseFormatter(),
+	)
 	r.v1 = r.api.Group("/v1")
 
 	r.swaggerRouter()

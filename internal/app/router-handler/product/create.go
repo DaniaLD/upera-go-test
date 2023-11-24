@@ -12,7 +12,7 @@ import (
 // @Tags Product
 // @Produce json
 // @Param body body productDto.CreateProductRequestDto true "body"
-// @Success 200 {object} globalModel.Product
+// @Success 200 {object} productDto.ProductCommonResponseDto
 // @Router /api/v1/product [post]
 func (h *ProductRouterHandler) CreateProduct(c *fiber.Ctx) error {
 	var body productDto.CreateProductRequestDto

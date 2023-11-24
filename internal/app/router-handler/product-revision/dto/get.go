@@ -6,3 +6,8 @@ type ProductRevisionsListResponse struct {
 	Revisions []globalModel.ProductRevision `json:"revisions"`
 	Total     int64                         `json:"total"`
 }
+
+type ProductRevisionCommonResponseDto struct {
+	globalModel.ResponseModel
+	Payload ProductRevisionsListResponse `json:"payload"`
+}
