@@ -1,7 +1,7 @@
 package productRouterHandler
 
 import (
-	productDto "github.com/DaniaLD/upera-go-test/internal/app/routerHandler/product/dto"
+	productDto "github.com/DaniaLD/upera-go-test/internal/app/router-handler/product/dto"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"github.com/gofiber/fiber/v2"
 )

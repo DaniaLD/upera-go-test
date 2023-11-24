@@ -1,6 +1,6 @@
 package router
 
-import productRevisionRouterHandler "github.com/DaniaLD/upera-go-test/internal/app/routerHandler/product-revision"
+import productRevisionRouterHandler "github.com/DaniaLD/upera-go-test/internal/app/router-handler/product-revision"
 
 func (r *Router) productRevisionRouter() {
 	prdRvsGroup := r.v1.Group("product-revision")

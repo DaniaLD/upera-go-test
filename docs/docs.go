@@ -35,7 +35,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.CreateProductRequestDto"
                         }
                     }
                 ],
@@ -87,7 +87,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/productRevisionDto.ProductRevisionsListResponse"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product-revision_dto.ProductRevisionsListResponse"
                         }
                     }
                 }
@@ -138,7 +138,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto"
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.CreateProductRequestDto"
                         }
                     },
                     {
@@ -200,7 +200,21 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_DaniaLD_upera-go-test_internal_app_routerHandler_product_dto.CreateProductRequestDto": {
+        "github_com_DaniaLD_upera-go-test_internal_app_router-handler_product-revision_dto.ProductRevisionsListResponse": {
+            "type": "object",
+            "properties": {
+                "revisions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_DaniaLD_upera-go-test_internal_app_router-handler_product_dto.CreateProductRequestDto": {
             "type": "object",
             "properties": {
                 "color": {
@@ -275,20 +289,6 @@ const docTemplate = `{
                     "items": {
                         "type": "string"
                     }
-                }
-            }
-        },
-        "productRevisionDto.ProductRevisionsListResponse": {
-            "type": "object",
-            "properties": {
-                "revisions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision"
-                    }
-                },
-                "total": {
-                    "type": "integer"
                 }
             }
         }
