@@ -9,4 +9,5 @@ func (r *Router) productRouter() {
 	productGroup.Post("/", productHandler.CreateProduct)
 	productGroup.Put("/:id", productHandler.UpdateProduct)
 	productGroup.Get("/:id", productHandler.GetProduct)
+	productGroup.Get("/:id/revision/:revisionId", productHandler.GetProductByRevisionId)
 }
