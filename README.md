@@ -44,3 +44,9 @@ Our APIs are divided in to two parts: Product and Product Revision.
 There is a docker compose file in the application and you can easily run following command and run application:
 
 ``docker-compose up``
+
+Then open up your browser and navigate to:
+
+http://localhost:8080/swagger/index.html
+
+and you can visit APIs' documentations.
