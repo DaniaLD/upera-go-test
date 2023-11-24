@@ -1,6 +1,7 @@
 package productRouterHandler
 
 import (
+	_ "github.com/DaniaLD/upera-go-test/internal/app/router-handler/product/dto"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"github.com/gofiber/fiber/v2"
 )
@@ -11,7 +12,7 @@ import (
 // @Tags Product
 // @Produce json
 // @Param id path string true "Product Id" format(string)
-// @Success 200 {object} globalModel.Product
+// @Success 200 {object} productDto.ProductCommonResponseDto
 // @Router /api/v1/product/{id} [get]
 func (h *ProductRouterHandler) GetProduct(c *fiber.Ctx) error {
 	prdId := c.Params("id")
