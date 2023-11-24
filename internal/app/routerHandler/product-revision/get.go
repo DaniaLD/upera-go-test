@@ -1,8 +1,10 @@
 package productRevisionRouterHandler
 
 import (
+	productRevisionDto "github.com/DaniaLD/upera-go-test/internal/app/routerHandler/product-revision/dto"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"github.com/gofiber/fiber/v2"
+	"strconv"
 )
 
 // GetProductRevisions
@@ -11,11 +13,17 @@ import (
 // @Tags Product Revision
 // @Produce json
 // @Param productId path string true "Product Id" format(string)
-// @Success 200 {object} []globalModel.ProductRevision
+// @Param limit query int false "limit" default(10)
+// @Param page query int false "page" default(1)
+// @Success 200 {object} productRevisionDto.ProductRevisionsListResponse
 // @Router /api/v1/product-revision/{productId} [get]
 func (h *ProductRevisionRouterHandler) GetProductRevisions(c *fiber.Ctx) error {
 	prdId := c.Params("productId")
-	revisions, err := h.productRevisionAppService.Get(prdId)
+	limit := c.Query("limit", "10")
+	limitInt, _ := strconv.ParseInt(limit, 10, 64)
+	page := c.Query("page", "1")
+	pageInt, _ := strconv.ParseInt(page, 10, 64)
+	revisions, total, err := h.productRevisionAppService.Get(prdId, limitInt, pageInt)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(globalModel.ErrorModel{Message: err.Error()})
 	} else if len(revisions) == 0 {
@@ -25,5 +33,5 @@ func (h *ProductRevisionRouterHandler) GetProductRevisions(c *fiber.Ctx) error {
 			Payload: []globalModel.ProductRevision{},
 		})
 	}
-	return c.JSON(revisions)
+	return c.JSON(productRevisionDto.ProductRevisionsListResponse{Revisions: revisions, Total: total})
 }

@@ -67,16 +67,27 @@ const docTemplate = `{
                         "name": "productId",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "page",
+                        "name": "page",
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision"
-                            }
+                            "$ref": "#/definitions/productRevisionDto.ProductRevisionsListResponse"
                         }
                     }
                 }
@@ -264,6 +275,20 @@ const docTemplate = `{
                     "items": {
                         "type": "string"
                     }
+                }
+            }
+        },
+        "productRevisionDto.ProductRevisionsListResponse": {
+            "type": "object",
+            "properties": {
+                "revisions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision"
+                    }
+                },
+                "total": {
+                    "type": "integer"
                 }
             }
         }
