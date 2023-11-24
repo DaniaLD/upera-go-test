@@ -1,11 +1,11 @@
-package productSchema
+package schema
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
 )
 
-type ProductSchema struct {
+type Product struct {
 	Id          primitive.ObjectID `json:"id" bson:"_id"`
 	Name        string             `json:"name" bson:"name"`
 	Description string             `json:"description" bson:"description"`

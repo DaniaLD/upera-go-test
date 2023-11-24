@@ -8,4 +8,5 @@ func (r *Router) productRouter() {
 	productHandler := productRouterHandler.NewProductRouterHandler(*r.productAppService)
 	productGroup.Post("/", productHandler.CreateProduct)
 	productGroup.Put("/:id", productHandler.UpdateProduct)
+	productGroup.Get("/:id", productHandler.GetProduct)
 }
