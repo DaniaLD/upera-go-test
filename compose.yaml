@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  # Go Application
+  myapp:
+    image: myapp-image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - rabbitmq
+      - redis
+      - mongodb
+    networks:
+      - mynetwork
+
+  # RabbitMQ
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    networks:
+      - mynetwork
+
+  # Redis
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - mynetwork
+
+  # MongoDB
+  mongodb:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
