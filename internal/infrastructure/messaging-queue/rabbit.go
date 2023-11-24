@@ -71,7 +71,7 @@ func (c *Connection) BindQueueToExchangeAndConsume(exchange Exchange, queue Queu
 	return messages, err
 }
 
-func (c *Connection) PublishToExchange(exchange Exchange, routingKey string, payload string, delay int) error {
+func (c *Connection) PublishToExchange(exchange Exchange, routingKey string, payload []byte, delay int) error {
 	ch, err := c.Connection.Channel()
 	if err != nil {
 		return fmt.Errorf("Failed to create RabbitMQ channel: %v", err)
@@ -93,7 +93,7 @@ func (c *Connection) PublishToExchange(exchange Exchange, routingKey string, pay
 	}()
 	err = ch.PublishWithContext(ctx, exchange.Name, routingKey, false, false, amqp.Publishing{
 		ContentType: "text/plain",
-		Body:        []byte(payload),
+		Body:        payload,
 		Headers:     headers,
 	})
 	if err != nil {
