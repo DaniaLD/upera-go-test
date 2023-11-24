@@ -4,6 +4,7 @@ import (
 	_ "github.com/DaniaLD/upera-go-test/docs"
 	"github.com/DaniaLD/upera-go-test/internal/app/router"
 	productAppService "github.com/DaniaLD/upera-go-test/internal/app/service/product"
+	productRevisionAppService "github.com/DaniaLD/upera-go-test/internal/app/service/product-revision"
 	productRevisionDomainservice "github.com/DaniaLD/upera-go-test/internal/domain/product-revision/service"
 	productDomainService "github.com/DaniaLD/upera-go-test/internal/domain/product/service"
 	"github.com/DaniaLD/upera-go-test/internal/infrastructure/database"
@@ -35,13 +36,14 @@ func main() {
 
 	prdRvsRepo := productRevisionRepositoryImpl.NewProductRevisionRepository(mongoClient, dbName, redisClient)
 	prdRvsUseCase := productRevisionDomainservice.NewProductRevisionService(prdRvsRepo)
+	prdRvsAppService := productRevisionAppService.NewProductRevisionAppService(prdRvsUseCase)
 
 	prdRepo := productRepositoryImpl.NewProductRepository(mongoClient, dbName)
 	prdUseCase := productDomainService.NewProductService(prdRepo)
 	prdAppService := productAppService.NewProductAppService(prdUseCase, prdRvsUseCase)
 
 	app := fiber.New()
-	rtr := router.NewRouter(app, prdAppService)
+	rtr := router.NewRouter(app, prdAppService, prdRvsAppService)
 	rtr.InitRouter()
 
 	app.Listen(":" + viper.GetString("port"))

@@ -49,6 +49,39 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/product-revision/{productId}": {
+            "get": {
+                "description": "GetProductRevisions",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product Revision"
+                ],
+                "summary": "GetProductRevisions",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "string",
+                        "description": "Product Id",
+                        "name": "productId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/product/{id}": {
             "put": {
                 "description": "UpdateProduct",
@@ -136,6 +169,35 @@ const docTemplate = `{
                 },
                 "updatedAt": {
                     "type": "string"
+                }
+            }
+        },
+        "github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "newValue": {
+                    "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                },
+                "previousValue": {
+                    "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                },
+                "productId": {
+                    "type": "string"
+                },
+                "revisionId": {
+                    "type": "integer"
+                },
+                "updatedAttributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         }
