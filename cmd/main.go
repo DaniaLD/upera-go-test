@@ -28,8 +28,12 @@ func main() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
+	redisClient, err := database.NewRedisClient(viper.GetString("database.redis.uri"))
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
 
-	prdRvsRepo := productRevisionRepositoryImpl.NewProductRevisionRepository(mongoClient, dbName)
+	prdRvsRepo := productRevisionRepositoryImpl.NewProductRevisionRepository(mongoClient, dbName, redisClient)
 	prdRvsUseCase := productRevisionDomainservice.NewProductRevisionService(prdRvsRepo)
 
 	prdRepo := productRepositoryImpl.NewProductRepository(mongoClient, dbName)
