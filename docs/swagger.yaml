@@ -102,6 +102,25 @@ paths:
       tags:
       - Product Revision
   /api/v1/product/{id}:
+    get:
+      description: GetProduct
+      parameters:
+      - description: Product Id
+        format: string
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+      summary: GetProduct
+      tags:
+      - Product
     put:
       description: UpdateProduct
       parameters:
@@ -125,6 +144,32 @@ paths:
           schema:
             $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
       summary: UpdateProduct
+      tags:
+      - Product
+  /api/v1/product/{id}/revision/{revisionId}:
+    get:
+      description: GetProductByRevisionId
+      parameters:
+      - description: Product Id
+        format: string
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Revision Id
+        format: string
+        in: path
+        name: revisionId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product'
+      summary: GetProductByRevisionId
       tags:
       - Product
 swagger: "2.0"

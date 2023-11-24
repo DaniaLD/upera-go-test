@@ -83,6 +83,34 @@ const docTemplate = `{
             }
         },
         "/api/v1/product/{id}": {
+            "get": {
+                "description": "GetProduct",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "GetProduct",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "string",
+                        "description": "Product Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                        }
+                    }
+                }
+            },
             "put": {
                 "description": "UpdateProduct",
                 "produces": [
@@ -107,6 +135,44 @@ const docTemplate = `{
                         "format": "string",
                         "description": "Product Id",
                         "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/product/{id}/revision/{revisionId}": {
+            "get": {
+                "description": "GetProductByRevisionId",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "GetProductByRevisionId",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "string",
+                        "description": "Product Id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "format": "string",
+                        "description": "Revision Id",
+                        "name": "revisionId",
                         "in": "path",
                         "required": true
                     }

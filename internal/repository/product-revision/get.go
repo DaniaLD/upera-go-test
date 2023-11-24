@@ -2,7 +2,7 @@ package productRevisionRepositoryImpl
 
 import (
 	"encoding/json"
-	productRevisionSchema "github.com/DaniaLD/upera-go-test/internal/repository/schema/product-revision"
+	productRevisionSchema "github.com/DaniaLD/upera-go-test/internal/repository/schema"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

@@ -1,7 +1,7 @@
 package productRepositoryImpl
 
 import (
-	productSchema "github.com/DaniaLD/upera-go-test/internal/repository/schema/product"
+	productSchema "github.com/DaniaLD/upera-go-test/internal/repository/schema"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -17,7 +17,7 @@ func (r *productRepositoryImpl) Update(productData globalModel.Product) (orgProd
 	}
 
 	now := time.Now()
-	var orgProductDoc productSchema.ProductSchema
+	var orgProductDoc productSchema.Product
 	updatedAttributes := bson.D{
 		{"name", productData.Name},
 		{"description", productData.Description},
