@@ -10,3 +10,9 @@ type Product struct {
 	CreatedAt   string `json:"createdAt"`
 	UpdatedAt   string `json:"updatedAt"`
 }
+
+type ProductUpdateEvent struct {
+	ProductId    string  `json:"productId"`
+	PreviousData Product `json:"previousData"`
+	NewData      Product `json:"newData"`
+}

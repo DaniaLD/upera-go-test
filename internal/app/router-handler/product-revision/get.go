@@ -1,7 +1,7 @@
 package productRevisionRouterHandler
 
 import (
-	productRevisionDto "github.com/DaniaLD/upera-go-test/internal/app/routerHandler/product-revision/dto"
+	productRevisionDto "github.com/DaniaLD/upera-go-test/internal/app/router-handler/product-revision/dto"
 	globalModel "github.com/DaniaLD/upera-go-test/pkg/model"
 	"github.com/gofiber/fiber/v2"
 	"strconv"

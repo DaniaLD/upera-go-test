@@ -8,5 +8,14 @@
     "redis": {
       "uri": "redis://:WZCsmhfQvMnoEJiIptvjxZdv@robin.iran.liara.ir:32035/0"
     }
+  },
+  "messagingQueue": {
+    "rabbit": {
+      "uri": "amqp://localhost:5672",
+      "productUpdateEvent": {
+        "exchange": "product",
+        "routingKey": "product.updated"
+      }
+    }
   }
 }
