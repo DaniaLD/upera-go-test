@@ -6,7 +6,6 @@ import (
 )
 
 type productRepositoryImpl struct {
-	name   string
 	client *mongo.Client
 	dbName string
 }

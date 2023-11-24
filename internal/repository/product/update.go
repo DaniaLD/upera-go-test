@@ -38,12 +38,14 @@ func (r *productRepositoryImpl) Update(productData globalModel.Product) (orgProd
 	}
 	location, _ := time.LoadLocation("Asia/Tehran")
 	orgProduct = globalModel.Product{
+		Id:          productData.Id,
 		Name:        orgProductDoc.Name,
 		Description: orgProductDoc.Description,
 		Color:       orgProductDoc.Color,
 		Price:       orgProductDoc.Price,
 		ImageURL:    orgProductDoc.ImageURL,
 		CreatedAt:   orgProductDoc.CreatedAt.In(location).Format(time.RFC3339Nano),
+		UpdatedAt:   orgProductDoc.UpdatedAt.In(location).Format(time.RFC3339Nano),
 	}
 
 	return orgProduct, now.Format(time.RFC3339Nano), nil

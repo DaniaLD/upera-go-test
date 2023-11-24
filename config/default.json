@@ -4,6 +4,9 @@
     "mongo": {
       "uri": "mongodb://root:WjT0ajrtNKRczKcVbiZLjVge@robin.iran.liara.ir:33638/my-app?authSource=admin",
       "dbName": "my-app"
+    },
+    "redis": {
+      "uri": "redis://:WZCsmhfQvMnoEJiIptvjxZdv@robin.iran.liara.ir:32035/0"
     }
   }
 }
