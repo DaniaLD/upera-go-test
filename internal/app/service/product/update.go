@@ -10,14 +10,11 @@ func (s *Service) Update(productData globalModel.Product) (globalModel.Product, 
 		return globalModel.Product{}, err
 	}
 
-	return globalModel.Product{
-		Id:          productData.Id,
-		Name:        productData.Name,
-		Description: productData.Description,
-		Color:       productData.Color,
-		Price:       productData.Price,
-		ImageURL:    productData.ImageURL,
-		CreatedAt:   orgProduct.CreatedAt,
-		UpdatedAt:   updateTime,
-	}, nil
+	productData.CreatedAt = orgProduct.CreatedAt
+	productData.UpdatedAt = updateTime
+	go func() {
+		s.productRevisionUseCase.Create(productData.Id, orgProduct, productData)
+	}()
+
+	return productData, nil
 }

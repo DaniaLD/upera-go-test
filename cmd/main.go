@@ -4,9 +4,11 @@ import (
 	_ "github.com/DaniaLD/upera-go-test/docs"
 	"github.com/DaniaLD/upera-go-test/internal/app/router"
 	productAppService "github.com/DaniaLD/upera-go-test/internal/app/service/product"
+	productRevisionDomainservice "github.com/DaniaLD/upera-go-test/internal/domain/product-revision/service"
 	productDomainService "github.com/DaniaLD/upera-go-test/internal/domain/product/service"
 	"github.com/DaniaLD/upera-go-test/internal/infrastructure/database"
 	productRepositoryImpl "github.com/DaniaLD/upera-go-test/internal/repository/product"
+	productRevisionRepositoryImpl "github.com/DaniaLD/upera-go-test/internal/repository/product-revision"
 	"github.com/DaniaLD/upera-go-test/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/spf13/viper"
@@ -27,9 +29,12 @@ func main() {
 		log.Fatalf(err.Error())
 	}
 
+	prdRvsRepo := productRevisionRepositoryImpl.NewProductRevisionRepository(mongoClient, dbName)
+	prdRvsUseCase := productRevisionDomainservice.NewProductRevisionService(prdRvsRepo)
+
 	prdRepo := productRepositoryImpl.NewProductRepository(mongoClient, dbName)
 	prdUseCase := productDomainService.NewProductService(prdRepo)
-	prdAppService := productAppService.NewProductAppService(prdUseCase)
+	prdAppService := productAppService.NewProductAppService(prdUseCase, prdRvsUseCase)
 
 	app := fiber.New()
 	rtr := router.NewRouter(app, prdAppService)
