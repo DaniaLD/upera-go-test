@@ -10,41 +10,41 @@ import (
 	"time"
 )
 
-func (r *productRepositoryImpl) Update(productData globalModel.Product) (product globalModel.Product, err error) {
+func (r *productRepositoryImpl) Update(productData globalModel.Product) (orgProduct globalModel.Product, updateTime string, err error) {
 	prdObjId, err := primitive.ObjectIDFromHex(productData.Id)
 	if err != nil {
-		return product, err
+		return orgProduct, "", err
 	}
 
-	var productDoc productSchema.ProductSchema
+	now := time.Now()
+	var orgProductDoc productSchema.ProductSchema
 	updatedAttributes := bson.D{
 		{"name", productData.Name},
 		{"description", productData.Description},
 		{"color", productData.Color},
 		{"price", productData.Price},
 		{"imageUrl", productData.ImageURL},
-		{"updatedAt", time.Now()},
+		{"updatedAt", now},
 	}
-	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+	opts := options.FindOneAndUpdate().SetReturnDocument(options.Before)
 	err = r.getCollection().FindOneAndUpdate(nil,
 		bson.D{{"_id", prdObjId}},
 		bson.D{{"$set", updatedAttributes}},
-		opts).Decode(&productDoc)
+		opts).Decode(&orgProductDoc)
 	if err == mongo.ErrNoDocuments {
-		return product, nil
+		return orgProduct, "", nil
 	} else if err != nil {
-		return product, err
+		return orgProduct, "", err
 	}
-	product = globalModel.Product{
-		Id:          productDoc.Id.Hex(),
-		Name:        productDoc.Name,
-		Description: productDoc.Description,
-		Color:       productDoc.Color,
-		Price:       productDoc.Price,
-		ImageURL:    productDoc.ImageURL,
-		CreatedAt:   productDoc.CreatedAt.Format(time.RFC3339Nano),
-		UpdatedAt:   productDoc.UpdatedAt.Format(time.RFC3339Nano),
+	location, _ := time.LoadLocation("Asia/Tehran")
+	orgProduct = globalModel.Product{
+		Name:        orgProductDoc.Name,
+		Description: orgProductDoc.Description,
+		Color:       orgProductDoc.Color,
+		Price:       orgProductDoc.Price,
+		ImageURL:    orgProductDoc.ImageURL,
+		CreatedAt:   orgProductDoc.CreatedAt.In(location).Format(time.RFC3339Nano),
 	}
 
-	return product, nil
+	return orgProduct, now.Format(time.RFC3339Nano), nil
 }

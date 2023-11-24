@@ -11,7 +11,7 @@ type ProductSchema struct {
 	Description string             `json:"description" bson:"description"`
 	Color       string             `json:"color" bson:"color"`
 	Price       int64              `json:"price" bson:"price"`
-	ImageURL    string             `json:"imageURL" bson:"imageURL"`
+	ImageURL    string             `json:"imageURL" bson:"imageUrl"`
 	CreatedAt   time.Time          `json:"createdAt" bson:"createdAt"`
 	UpdatedAt   time.Time          `json:"updatedAt" bson:"updatedAt"`
 }
