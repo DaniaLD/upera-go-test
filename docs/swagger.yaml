@@ -51,6 +51,15 @@ definitions:
           type: string
         type: array
     type: object
+  productRevisionDto.ProductRevisionsListResponse:
+    properties:
+      revisions:
+        items:
+          $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision'
+        type: array
+      total:
+        type: integer
+    type: object
 info:
   contact:
     email: danial.6274@gmail.com
@@ -89,15 +98,23 @@ paths:
         name: productId
         required: true
         type: string
+      - default: 10
+        description: limit
+        in: query
+        name: limit
+        type: integer
+      - default: 1
+        description: page
+        in: query
+        name: page
+        type: integer
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/github_com_DaniaLD_upera-go-test_pkg_model.ProductRevision'
-            type: array
+            $ref: '#/definitions/productRevisionDto.ProductRevisionsListResponse'
       summary: GetProductRevisions
       tags:
       - Product Revision
